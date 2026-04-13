@@ -1,10 +1,10 @@
-/* === Elegant Portfolio Theme === */
-
 :root {
     --accent: #d4c1a6;
     --accent-light: #e9dccb;
+    --pink: #f7c6c7;
     --bg: #faf9f7;
     --dark: #2e2a26;
+    --black: #000000;
     --soft: #f4efe9;
 }
 
@@ -26,7 +26,8 @@ h1, h2, h3 {
     position: fixed;
     top: 0;
     width: 100%;
-    box-sizing: border-box;  /* ✅ IMPORTANT FIX */
+    box-sizing: border-box;  /* IMPORTANT FIX */
+    
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(12px);
     padding: 18px 10%;
@@ -56,12 +57,14 @@ h1, h2, h3 {
     opacity: 1;
 }
 
+
 /* Hero Section */
 .hero {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 50px 15% 130px;
+    padding: 50px 18% 120px;
 }
 
 .hero-text {
@@ -84,11 +87,36 @@ h1, h2, h3 {
 */
 
 .hero-photo img {
-    width: 120%;
-    height: 120%;
+    width: 130%;
+    height: 130%;
     object-fit: cover;
+    padding: 40px 1% 0px;
+}
+/* Cursive Draw */
+.cursive-hover {
+    
+    font-family: 'Playfair Display', serif; /* or any cursive font */
+    font-size: 4.6rem;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    bottom: 10px;
 }
 
+.cursive-hover::after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    bottom: 10px;
+    width: 0%;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.9s ease;
+}
+
+.cursive-hover:hover::after {
+    width: 100%;
+}
 .banner {
     width: 100%;
     height: 50px;
@@ -96,14 +124,25 @@ h1, h2, h3 {
      margin-top: -110px;
 }
 
-.banner1 {
-    width: 100%;
+.banner1{
+    width: 100vw;              /* full viewport width */
+    margin-left: calc(-50vw + 50%); /* breaks out of padding */
     height: 50px;
-    background: url("breAK\ NOB.png") center/cover no-repeat;
-     margin-top: 50px;
+    background: url("breAK NOB.png") center/cover no-repeat;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
-
+.full-divider {
+    width: 100vw;
+    height: 8px;
+    background: var(--black);
+    opacity: 1;
+    margin-top: -126.5px;
+    margin-left: calc(-50vw + 50%);
+    
+}
 .slider {
+    padding: 70px 0 0px;
   width: 100%;
   height: 200px;
   overflow: hidden;
@@ -130,9 +169,27 @@ h1, h2, h3 {
     transform: translateX(-30%);
   }
 }
+.full-divider1 {
+    width: 100vw;
+    height: 2px;
+    background: var(--black);
+    opacity: 1;
+    margin: 0px;;
+    margin-left: calc(-50vw + 50%);
+    
+}
+.full-divider2 {
+    width: 100vw;
+    height: 4px;
+    background: var(--black);
+    opacity: 1;
+    margin: 8px;;
+    margin-left: calc(-50vw + 50%);
+    
+}
 /* Sections */
 section {
-    padding: 90px 20%;
+    padding: 10px 20%;
 }
 .projects-container {
     display: grid;
@@ -146,43 +203,104 @@ section {
     border-radius: 16px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.06);
 }
-#projects {
-    padding: 150px 10% 20px;
+#about {
+    padding: 50px 15% 20px;
 }
 
+#projects {
+    padding: 80px 15% 50px;
+}
+
+#achievements {
+    padding: 65px 20% 65px;
+}
+#activities {
+    padding: 65px 20% 65px;
+}
+#hobbies {
+    padding: 65px 20% 65px;
+}
+#contact {
+    padding: 10px 2% 10px;
+}
 /* Minimalist Scroll Animation */
-.scroll-divider {
+.scroll-indicator {
+    position: fixed;
+    right: 150px;   /* move to right */
+    top: 200px;    /* start position */
+    height: 100vh;  /* vertical length */
+    width: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100px;
-    margin-top: -60px; /* Pull it slightly into the hero section's bottom padding */
-    margin-bottom: 20px;
-    position: relative;
 }
 
 .scroll-line {
-    width: 1px;
-    height: 80px;
-    /* elegant fade gradient */
+    width: 2px;
+    height: 100%;
     background: linear-gradient(to bottom, transparent, var(--dark), transparent);
-    opacity: 0.2;
+    opacity: 0;
+    position: relative;
+}
+
+.scroll-dot-wrapper {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .scroll-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--dark);
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent-light);
     border-radius: 50%;
-    position: absolute;
-    top: 10px;
-    opacity: 0;
-    animation: drop 2s infinite cubic-bezier(0.6, 0.05, 0.15, 0.95);
+    animation: bubbleFloat 3s infinite ease-in-out;
 }
 
 @keyframes drop {
+  0% {
+    top: 10px;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    top: 70px;
+    opacity: 0;
+  }
+}
+
+@keyframes bubbleFloat {
+  0% {
+    top: 10px;
+    transform: translateX(0) scale(1);
+  }
+
+  25% {
+    transform: translateX(3px) scale(1.05, 0.95);
+  }
+
+  50% {
+    top: 90px;
+    transform: translateX(-3px) scale(0.9, 1.1); /* stretch */
+  }
+
+  60% {
+    transform: translateX(2px) scale(1.1, 0.9); /* wobble */
+  }
+
+  75% {
+    transform: translateX(-2px) scale(0.95, 1.05);
+  }
+
+  100% {
+    top: 10px;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/*@keyframes drop {
     0% {
         transform: translateY(0px) scale(0.8);
         opacity: 0;
@@ -200,10 +318,11 @@ section {
         opacity: 0;
     }
 }
+*/
 .radial-svg {
   width: 100%;
-  max-width: 600px;
-  margin: 100px auto;
+  max-width: 800px;
+  margin: 40px auto;
 }
 
 svg {
@@ -213,7 +332,7 @@ svg {
 
 /* Center */
 .center-circle {
-  fill: var(--accent-light);
+  fill: var(--pink);
 }
 
 .center-text {
@@ -224,7 +343,7 @@ svg {
 
 /* Lines */
 .line {
-  stroke: #444;
+  stroke: #000000;
   stroke-width: 2;
   fill: none;
   marker-end: url(#arrow);
@@ -233,12 +352,12 @@ svg {
 
 /* Text */
 svg text {
-  font-size: 14px;
+  font-size: 20px;
   fill: var(--dark);
 }
 
 #contact {
-    padding: 100px 10% 60px; /* more bottom spacing */
+    padding: 100px 10% 10px; /* more bottom spacing */
 }
 
 .contact-container {
