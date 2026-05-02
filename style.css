@@ -5,7 +5,8 @@
     --bg: #faf9f7;
     --dark: #2e2a26;
     --black: #000000;
-    --soft: #f4efe9;
+    --soft: #f7d2e9;
+    --projcard: #f3e8da;
 }
 
 body {
@@ -56,9 +57,6 @@ h1, h2, h3 {
 .nav-links a:hover {
     opacity: 1;
 }
-
-
-/* Hero Section */
 p {
     text-align: justify;
     line-height: 1.7;
@@ -85,6 +83,16 @@ p {
     font-size: 4.5rem;
     margin-bottom: 20px;
 }
+
+/*.hero-photo {
+    width: 440px;
+    height: 520px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--soft);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+*/
 
 .hero-photo img {
     width: 130%;
@@ -198,11 +206,36 @@ section {
     margin-top: 20px;
 }
 .project-card {
-    background: var(--soft);
+    background: var(--projcard);
     padding: 20px;
     border-radius: 16px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+    position: relative;
+     cursor: pointer;
+    transition: all 0.3s ease;
 }
+    .project-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.live-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #edbeee;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+
+
 #about {
     padding: 50px 15% 20px;
 }
@@ -234,6 +267,8 @@ section {
     justify-content: center;
 }
 
+
+
 .scroll-dot-wrapper {
     position: absolute;
     top: 10px;
@@ -246,22 +281,10 @@ section {
     height: 40px;
     background-color: var(--accent-light);
     border-radius: 50%;
-    animation: bubbleFloat 3s infinite ease-in-out;
+    animation: bubbleFloat 2s infinite ease-in-out;
 }
-
-/*keyframes drop {
-  0% {
-    top: 10px;
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    top: 70px;
-    opacity: 0;
-  }
-}*/
+ 
+/*bubble float animation*/
 
 @keyframes bubbleFloat {
   0% {
@@ -292,6 +315,25 @@ section {
   }
 }
 
+/*@keyframes drop {
+    0% {
+        transform: translateY(0px) scale(0.8);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.6;
+        transform: translateY(15px) scale(1.2);
+    }
+    80% {
+        opacity: 0.6;
+        transform: translateY(65px) scale(1);
+    }
+    100% {
+        transform: translateY(80px) scale(0.5);
+        opacity: 0;
+    }
+}
+*/
 .radial-svg {
   width: 100%;
   max-width: 800px;
@@ -361,4 +403,61 @@ svg text {
 
 .contact-item a:hover {
     color: var(--accent);
+}
+
+
+.blob-container {
+    position: fixed;   /* 🔥 key change */
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none; /* so it doesn't block clicks */
+}
+
+/* Base blob */
+.blob {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--accent-light);
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.4;
+    animation: floatBlob 20s infinite ease-in-out;
+}
+
+/* Individual positions */
+.blob1 {
+    top: 10%;
+    left: 8%;
+}
+
+.blob2 {
+    top: 50%;
+    left: 70%;
+    animation-delay: 5s;
+}
+
+.blob3 {
+    top: 70%;
+    left: 30%;
+    animation-delay: 10s;
+}
+
+@keyframes floatBlob {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(40px, -60px) scale(1.1);
+    }
+    66% {
+        transform: translate(-30px, 50px) scale(0.9);
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
 }
